@@ -13,30 +13,24 @@ namespace RemyRoez
 	{
 		public int index;
 		public float power;
-		public CommandEvent commandEvent;
-
-		public void Invoke()
-		{
-			commandEvent.Invoke(index, power);
-		}
 	}
 
 	[System.Serializable]
-	public class Commands
+	public class CommandSet
 	{
-		public List<Command> list;
-
-
-		public void Invoke()
+		public List<Command> commands;
+		
+		public void Invoke(CommandEvent commandEvent)
 		{
-			foreach (Command command in list)
+			foreach (Command command in commands)
 			{
-				command.Invoke();
+				commandEvent.Invoke(command.index, command.power);
 			}
 		}
 	}
 
-	public class CommandList : Detail.ListComponent<Commands>
+	public class CommandList : Detail.ListComponent<CommandSet>
 	{
+		public CommandEvent commandEvent;
 	}
 }

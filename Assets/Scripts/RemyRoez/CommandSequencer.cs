@@ -65,7 +65,7 @@ namespace RemyRoez
 		// コマンドの実行
 		private void InvokeCommand(int index)
 		{
-			commandList[index].Invoke();
+			commandList[index].Invoke(commandList.commandEvent);
 		}
 	}
 
